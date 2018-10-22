@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+File: Main.fxml
+File: EditMenu Controller.java
+CS361 Project 5
+Names: Yi Feng, Matt Jones, Danqing Zhao
+Date: 10/12/18
+-->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/8.0.121"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="proj6ZhaoCoyne .Controller">
+    <MenuBar VBox.vgrow="NEVER">
+        <Menu text="File">
+            <MenuItem onAction="#handleAboutMenuItemAction"
+                      text="About..."/>
+            <SeparatorMenuItem/>
+            <MenuItem onAction="#handleNewMenuItemAction" text="New">
+                <accelerator>
+                    <KeyCodeCombination alt="UP" code="N" control="UP" meta="DOWN"
+                                        shift="UP" shortcut="UP"/>
+                </accelerator>
+            </MenuItem>
+            <MenuItem onAction="#handleOpenMenuItemAction"
+                      text="Open...">
+                <accelerator>
+                    <KeyCodeCombination alt="UP" code="O" control="UP" meta="DOWN"
+                                        shift="UP" shortcut="UP"/>
+                </accelerator>
+            </MenuItem>
+            <MenuItem fx:id="closeMenuItem" onAction="#handleCloseMenuItemAction"
+                      text="Close">
+                <accelerator>
+                    <KeyCodeCombination alt="UP" code="W" control="UP" meta="DOWN"
+                                        shift="UP" shortcut="UP"/>
+                </accelerator>
+            </MenuItem>
+            <MenuItem fx:id="saveMenuItem" onAction="#handleSaveMenuItemAction"
+                      text="Save">
+                <accelerator>
+                    <KeyCodeCombination alt="UP" code="S" control="UP" meta="DOWN"
+                                        shift="UP" shortcut="UP"/>
+                </accelerator>
+            </MenuItem>
+            <MenuItem fx:id="saveAsMenuItem" onAction="#handleSaveAsMenuItemAction"
+                      text="Save as...">
+                <accelerator>
+                    <KeyCodeCombination alt="UP" code="S" control="UP" meta="DOWN"
+                                        shift="DOWN" shortcut="UP"/>
+                </accelerator>
+            </MenuItem>
+            <SeparatorMenuItem/>
+            <MenuItem onAction="#handleExitMenuItemAction"
+                      text="Exit">
+                <accelerator>
+                    <KeyCodeCombination alt="UP" code="Q" control="UP" meta="DOWN"
+                                        shift="UP" shortcut="UP"/>
+                </accelerator>
+            </MenuItem>
+        </Menu>
+        <Menu text="Edit" fx:id="editMenu">
+            <MenuItem fx:id="undoMenuItem" onAction="#handleUndoMenuItemAction"
+                      text="Undo">
+                <accelerator>
+                    <KeyCodeCombination alt="UP" code="Z" control="UP" meta="DOWN"
+                                        shift="UP" shortcut="UP"/>
+                </accelerator>
+            </MenuItem>
+            <MenuItem fx:id="redoMenuItem" onAction="#handleRedoMenuItemAction"
+                      text="Redo">
+                <accelerator>
+                    <KeyCodeCombination alt="UP" code="Z" control="UP" meta="DOWN"
+                                        shift="DOWN" shortcut="UP"/>
+                </accelerator>
+            </MenuItem>
+            <MenuItem fx:id="cutMenuItem" onAction="#handleCutMenuItemAction" text="Cut">
+                <accelerator>
+                    <KeyCodeCombination alt="UP" code="X" control="UP" meta="DOWN"
+                                        shift="UP" shortcut="UP"/>
+                </accelerator>
+            </MenuItem>
+            <MenuItem fx:id="copyMenuItem" onAction="#handleCopyMenuItemAction"
+                      text="Copy">
+                <accelerator>
+                    <KeyCodeCombination alt="UP" code="C" control="UP" meta="DOWN"
+                                        shift="UP" shortcut="UP"/>
+                </accelerator>
+            </MenuItem>
+            <MenuItem fx:id="pasteMenuItem" onAction="#handlePasteMenuItemAction"
+                      text="Paste">
+                <accelerator>
+                    <KeyCodeCombination alt="UP" code="P" control="UP" meta="DOWN"
+                                        shift="UP" shortcut="UP"/>
+                </accelerator>
+            </MenuItem>
+            <MenuItem fx:id="selectAllMenuItem" onAction="#handleSelectAllMenuItemAction"
+                      text="Select all">
+                <accelerator>
+                    <KeyCodeCombination alt="UP" code="A" control="UP" meta="DOWN"
+                                        shift="DOWN" shortcut="UP"/>
+                </accelerator>
+            </MenuItem>
+        </Menu>
+    </MenuBar>
+    <ToolBar>
+        <Button fx:id="compileButton" onAction="#handleCompile" text="Compile"/>
+        <Button fx:id="compileRunButton" onAction="#handleCompileRun"
+                text="Compile and Run"/>
+        <Button fx:id="stopButton" onAction="#handleStop" text="Stop"/>
+    </ToolBar>
+    <SplitPane dividerPositions="0.8" orientation="VERTICAL" VBox.vgrow="ALWAYS">
+        <TabPane fx:id="tabPane" VBox.vgrow="ALWAYS">
+        </TabPane>
+        <VBox fx:id="consoleBox" VBox.vgrow="ALWAYS">
+        </VBox>
+    </SplitPane>
+</VBox>

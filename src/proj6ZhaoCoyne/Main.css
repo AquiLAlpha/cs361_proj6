@@ -1,0 +1,29 @@
+/**
+File: Main.css
+CS361 Project 5
+Names: Yi Feng, Matt Jones, Danqing Zhao
+Date: 10/12/18
+ */
+
+#compileButton {
+    -fx-border-color: gray;
+    -fx-background-color: lightblue;
+    -fx-border-radius: 100;
+    -fx-background-radius: 100;
+
+}
+
+#compileRunButton {
+    -fx-border-color: gray;
+    -fx-background-color: lightgreen;
+    -fx-border-radius: 100;
+    -fx-background-radius: 100;
+}
+
+#stopButton {
+    -fx-border-color: gray;
+    -fx-background-color: salmon;
+    -fx-border-radius: 100;
+    -fx-background-radius: 100;
+
+}
