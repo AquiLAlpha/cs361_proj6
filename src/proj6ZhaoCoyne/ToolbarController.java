@@ -48,7 +48,6 @@ public class ToolbarController {
         Thread compileThread = new Thread(workingProcess);
         compileThread.start();
     }
-
     /**
      * compile and run the curFile in a new thread
      * @param curFile

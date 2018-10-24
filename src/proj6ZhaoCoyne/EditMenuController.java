@@ -102,8 +102,8 @@ public class EditMenuController {
      * Simple helper method that gets the FXML objects from the
      * main controller for use by other methods in the class.
      */
-    public void receiveFXMLElements(Object[] list) {
-        tabPane = (TabPane) list[0];
+    public void receiveFXMLElements(TabPane tabPane) {
+        this.tabPane = tabPane;
 
     }
 }

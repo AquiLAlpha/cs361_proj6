@@ -8,7 +8,6 @@ Date: 10/12/18
 package proj6ZhaoCoyne;
 
 import javafx.application.Platform;
-import javafx.event.Event;
 import javafx.scene.control.*;
 import javafx.scene.Node;
 import javafx.stage.FileChooser;
@@ -132,7 +131,7 @@ public class FileMenuController {
      * a dialog appears asking whether you want to save the text before closing it.
      */
     public void handleCloseMenuItemAction() {
-        if (!this.isTables()) {
+        if (!this.noTabsOpen()) {
             this.closeTab(this.getCurrentTab());
         }
     }
@@ -163,7 +162,7 @@ public class FileMenuController {
             // get the text area embedded in the selected tab window
             // save the content of the active text area to the selected file
             CodeArea activeCodeArea = this.getCurrentCodeArea();
-            if (this.saveFileTo(activeCodeArea.getText(), saveFileDialog)) {
+            if (this.setFileContents(activeCodeArea.getText(), saveFileDialog)) {
                 // set the title of the tab to the name of the saved file
                 selectedTab.setText(saveFileDialog.getName());
 
@@ -202,7 +201,7 @@ public class FileMenuController {
         // if the current text area was loaded from a file or previously saved to a file,
         // then the text area is saved to that file
         else {
-            return this.saveFileTo(activeCodeArea.getText(),
+            return this.setFileContents(activeCodeArea.getText(),
                     this.tabFileMap.get(selectedTab));
         }
     }
@@ -229,7 +228,7 @@ public class FileMenuController {
      * @param file    File that the input string is saved to
      * @return boolean If the file is successfully saved, return true; else, return false.
      */
-    private boolean saveFileTo(String content, File file) {
+    private boolean setFileContents(String content, File file) {
         if (!tabPane.getTabs().isEmpty()) {
             try {
                 // open a file, save the content to it, and close it
@@ -274,7 +273,7 @@ public class FileMenuController {
      * @param file     File to compare with the the specified TextArea
      * @return Boolean indicating if the TextArea has changed from the File
      */
-    private boolean ifFileChanged(CodeArea codeArea, File file) {
+    private boolean codeAreaHasUnsavedChanges(CodeArea codeArea, File file) {
         String codeAreaContent = codeArea.getText();
         String fileContent = this.getFileContent((file));
         return !codeAreaContent.equals(fileContent);
@@ -308,7 +307,7 @@ public class FileMenuController {
         // check whether the saved file has been changed or not
         else {
             VirtualizedScrollPane vsp = (VirtualizedScrollPane) tab.getContent();
-            return this.ifFileChanged((CodeArea) vsp.getContent(),
+            return this.codeAreaHasUnsavedChanges((CodeArea) vsp.getContent(),
                     this.tabFileMap.get(tab));
         }
     }
@@ -383,7 +382,7 @@ public class FileMenuController {
      *
      * @return true if there aren't currently any tabs open, else false
      */
-    private boolean isTables() {
+    private boolean noTabsOpen() {
         return this.tabPane.getTabs().isEmpty();
     }
 
@@ -418,9 +417,9 @@ public class FileMenuController {
      * Simple helper method that gets the FXML objects from the
      * main controller for use by other methods in the class.
      */
-    public void receiveFXMLElements(Object[] list) {
-        tabPane = (TabPane) list[0];
-        primaryStage = (Stage) list[1];
+    public void receiveFXMLElements(TabPane tabPane, Stage stage) {
+        this.tabPane = tabPane;
+        this.primaryStage = stage;
     }
 
     /**

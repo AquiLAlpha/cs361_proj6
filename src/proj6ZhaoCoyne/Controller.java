@@ -251,8 +251,8 @@ public class Controller {
      * Add the console box at the bottom of the window.
      */
     public void initialize() {
-        fileMenuController.receiveFXMLElements(this.passFXMLElements());
-        editMenuController.receiveFXMLElements(this.passFXMLElements());
+        fileMenuController.receiveFXMLElements(tabPane, primaryStage);
+        editMenuController.receiveFXMLElements(tabPane);
 
         //Create an initial tab
         this.handleNewMenuItemAction();
@@ -296,17 +296,4 @@ public class Controller {
         return fileMenuController.getCurrentFile();
     }
 
-    /**
-     * Method which creates an array of necessary elements needed by
-     * the subcontrollers, which is passed in initialize().
-     *
-     * @return list containing necessary elements
-     */
-    private Object[] passFXMLElements() {
-
-        return new Object[]{
-                this.tabPane,
-                this.primaryStage
-        };
-    }
 }

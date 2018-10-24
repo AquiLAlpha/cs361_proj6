@@ -10,9 +10,7 @@ package proj6ZhaoCoyne;
 
 import javafx.scene.control.Button;
 
-import java.io.File;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 
 /**
  * This class implements the Runnable class and is used to build a process that can be
@@ -62,15 +60,27 @@ public class WorkingProcess implements Runnable {
         //compile the file
         this.process = buildProcess(console, command);
 
+        if(this.process == null) {
+            stopButton.setDisable(true);
+            return;
+        }
+
+        boolean compilationSuccessful = this.process.exitValue() == 0;
+        if(!compilationSuccessful) {
+            stopButton.setDisable(true);
+            return;
+        }
+
+        InputStream successsMessageStream = new ByteArrayInputStream(
+            "Compilation Successful!".getBytes());
+        console.readFrom(successsMessageStream);
 
         if(ifRun){
-            if (this.process!=null) {
-                path = curFile.getAbsoluteFile().getParent();
-                String fileName = curFile.getName();
-                String[] runCommand = {"java", "-cp", path, fileName.substring(0,
-                        fileName.length() - 5)};
-                this.process = buildProcess(console, runCommand);
-            }
+            path = curFile.getAbsoluteFile().getParent();
+            String fileName = curFile.getName();
+            String[] runCommand = {"java", "-cp", path, fileName.substring(0,
+                fileName.length() - 5)};
+            this.process = buildProcess(console, runCommand);
         }
         // disable the stopButton when process finishes
         stopButton.setDisable(true);
