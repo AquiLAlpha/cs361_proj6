@@ -9,15 +9,13 @@ package proj6ZhaoCoyne;
 
 import javafx.scene.input.KeyEvent;
 import org.fxmisc.richtext.StyleClassedTextArea;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.IOException;
+
+import java.io.*;
 
 /**
  * This IOConsole class extends the StyleCalssedTextArea.
  * It contains a String userInput to store the user's input,
- * and an outputStream for writing the user input to a process.
+ * and an stdIn for writing the user input to a process.
  * It can read from an inputstream and write to an outputstream.
  *
  * @author Yi Feng
@@ -26,7 +24,7 @@ import java.io.IOException;
  */
 public class IOConsole extends StyleClassedTextArea {
     private String userInput;
-    private OutputStream outputStream;
+    private OutputStream stdIn;
 
 
     /**
@@ -40,10 +38,10 @@ public class IOConsole extends StyleClassedTextArea {
 
     /**
      * set the console's output stream to the input OutpusStream
-     * @param outputStream
+     * @param stdIn
      */
-    public void setOutputStream(OutputStream outputStream) {
-        this.outputStream = outputStream;
+    public void setStdIn(OutputStream stdIn) {
+        this.stdIn = stdIn;
     }
 
     /**
@@ -61,10 +59,14 @@ public class IOConsole extends StyleClassedTextArea {
      * if failed, print out the exception message in terminal
      */
     public void writeTo() {
+        System.out.println("The writeTo() method has been called in IOConsole!");
         try {
-            OutputStreamWriter writer = new OutputStreamWriter(this.outputStream);
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(this.stdIn));
             writer.write(this.userInput);
+            writer.flush();
+            writer.close();
         } catch (IOException e1) {
+            System.out.println("Oops, we caught an exception.");
             e1.printStackTrace();
         }
     }

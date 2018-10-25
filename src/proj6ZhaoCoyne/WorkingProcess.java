@@ -115,12 +115,12 @@ public class WorkingProcess implements Runnable {
             console.readFrom(processErrorStream);
 
             // let the console read from the process's output stream
-            InputStream processOutput = this.process.getInputStream();
-            console.readFrom(processOutput);
+            InputStream stdOut = this.process.getInputStream();
+            console.readFrom(stdOut);
 
             // set the process's input stream to the console's output stream
-            OutputStream processInput = this.process.getOutputStream();
-            console.setOutputStream(processInput);
+            OutputStream stdIn = this.process.getOutputStream();
+            console.setStdIn(stdIn);
 
             //wait for the process to complete
             this.process.waitFor();
