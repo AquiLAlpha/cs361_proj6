@@ -36,7 +36,7 @@ public class Main extends Application {
     private static final int SCENE_WIDTH = 640;
     private static final int SCENE_HEIGHT = 480;
     private static final String STAGE_TITLE =
-            "Yi Feng, Matt Jones, Danqing Zhao's Project 5";
+            "Danqing and Micheal's Project 6";
 
     /**
      * Takes in a stage and loads the FXML, creates the controller,
@@ -65,8 +65,8 @@ public class Main extends Application {
 
         // initialize a scene and add features specified in the css file to the scene
         Scene scene = new Scene(root, SCENE_WIDTH, SCENE_HEIGHT);
-        scene.getStylesheets().add("/proj5JonesFengZhao/Main.css");
-        scene.getStylesheets().add("/proj5JonesFengZhao/JavaKeywords.css");
+        scene.getStylesheets().add("/proj6ZhaoCoyne/Main.css");
+        scene.getStylesheets().add("/proj6ZhaoCoyne/JavaKeywords.css");
 
         // configure the stage
         stage.setTitle(STAGE_TITLE);
