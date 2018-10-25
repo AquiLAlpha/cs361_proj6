@@ -143,7 +143,7 @@ public class Controller {
      */
     @FXML
     void handleExitMenuItemAction() {
-        toolbarController.handleStop();
+        toolbarController.handleStop(ioConsole);
         fileMenuController.handleExitMenuItemAction();
     }
 
@@ -232,7 +232,7 @@ public class Controller {
      */
     @FXML
     private void handleStop() {
-        toolbarController.handleStop();
+        toolbarController.handleStop(ioConsole);
     }
 
     /**
