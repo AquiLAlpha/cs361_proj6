@@ -25,9 +25,7 @@ import org.fxmisc.richtext.CodeArea;
  * @author Evan Savillo
  * @author Matt Jones
  */
-public class EditMenuController {
-    private TabPane tabPane;
-
+public class EditMenuController extends MenuController{
 
     /**
      * Handles the Undo button action.
@@ -77,33 +75,13 @@ public class EditMenuController {
         this.getCurrentCodeArea().selectAll();
     }
 
-    /**
-     * Simple helper method which returns the currently viewed tab
-     *
-     * @return currently viewed tab
-     */
-    private Tab getCurrentTab() {
-        return this.tabPane.getSelectionModel().getSelectedItem();
-    }
-
-    /**
-     * Simple helper method which returns the code area  within the currently viewed tab
-     *
-     * @return current viewed code area
-     */
-    private CodeArea getCurrentCodeArea() {
-        Tab selectedTab = this.getCurrentTab();
-        VirtualizedScrollPane vsp = (VirtualizedScrollPane) selectedTab.getContent();
-        return (CodeArea) vsp.getContent();
-    }
-
 
     /**
      * Simple helper method that gets the FXML objects from the
      * main controller for use by other methods in the class.
      */
     public void receiveFXMLElements(TabPane tabPane) {
-        this.tabPane = tabPane;
+        this.setTabPane(tabPane);
 
     }
 }

@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ae95a592-3463-4461-9274-54a3d354f6fb" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/proj6ZhaoCoyne/MenuController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/proj6ZhaoCoyne/IOConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/proj6ZhaoCoyne/IOConsole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/proj6ZhaoCoyne/WorkingProcess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/proj6ZhaoCoyne/WorkingProcess.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/proj6ZhaoCoyne/EditMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/proj6ZhaoCoyne/EditMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/proj6ZhaoCoyne/FileMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/proj6ZhaoCoyne/FileMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/proj6ZhaoCoyne/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/proj6ZhaoCoyne/Main.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,26 +30,26 @@
       <file leaf-file-name="FileMenuController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/proj6ZhaoCoyne/FileMenuController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-96">
-              <caret line="435" column="7" lean-forward="true" selection-start-line="435" selection-start-column="7" selection-end-line="435" selection-end-column="7" />
+            <state relative-caret-position="-231">
+              <caret line="420" column="7" lean-forward="true" selection-start-line="420" selection-start-column="7" selection-end-line="420" selection-end-column="7" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IOConsole.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="IOConsole.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/proj6ZhaoCoyne/IOConsole.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
-              <caret line="71" column="5" lean-forward="true" selection-start-line="71" selection-start-column="5" selection-end-line="71" selection-end-column="5" />
+            <state relative-caret-position="282">
+              <caret line="75" column="64" lean-forward="true" selection-start-line="75" selection-start-column="64" selection-end-line="75" selection-end-column="64" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="9" lean-forward="true" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+            <state relative-caret-position="240">
+              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
             </state>
           </provider>
         </entry>
@@ -94,7 +95,11 @@
       </file>
       <file leaf-file-name="JavaKeywords.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/proj6ZhaoCoyne/JavaKeywords.css">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="8" lean-forward="true" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -109,8 +114,8 @@
       <find>isTables</find>
       <find>userInput</find>
       <find>getCurrentFile</find>
-      <find>writeTo()</find>
       <find>stop</find>
+      <find>writeTo()</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -126,8 +131,8 @@
         <option value="$PROJECT_DIR$/src/proj6ZhaoCoyne/Controller.java" />
         <option value="$PROJECT_DIR$/src/proj6ZhaoCoyne/FileMenuController.java" />
         <option value="$PROJECT_DIR$/src/proj6ZhaoCoyne/WorkingProcess.java" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/proj6ZhaoCoyne/IOConsole.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -380,9 +385,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/proj6ZhaoCoyne/JavaKeywords.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/proj6ZhaoCoyne/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-157">
@@ -407,17 +409,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="9" lean-forward="true" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/proj6ZhaoCoyne/FileMenuController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-96">
-          <caret line="435" column="7" lean-forward="true" selection-start-line="435" selection-start-column="7" selection-end-line="435" selection-end-column="7" />
+        <state relative-caret-position="-231">
+          <caret line="420" column="7" lean-forward="true" selection-start-line="420" selection-start-column="7" selection-end-line="420" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -437,8 +432,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/proj6ZhaoCoyne/IOConsole.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="71" column="5" lean-forward="true" selection-start-line="71" selection-start-column="5" selection-end-line="71" selection-end-column="5" />
+        <state relative-caret-position="282">
+          <caret line="75" column="64" lean-forward="true" selection-start-line="75" selection-start-column="64" selection-end-line="75" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/proj6ZhaoCoyne/JavaKeywords.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="8" lean-forward="true" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
         </state>
       </provider>
     </entry>

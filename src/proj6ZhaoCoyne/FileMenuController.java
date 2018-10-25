@@ -38,8 +38,7 @@ import java.util.*;
  * @author Matt Jones
  * @author Danqing Zhao
  */
-public class FileMenuController {
-    private TabPane tabPane;
+public class FileMenuController extends MenuController{
     private Stage primaryStage;
 
     /**
@@ -69,7 +68,7 @@ public class FileMenuController {
         dialog.setTitle("About");
         dialog.setHeaderText("Authors");
         dialog.setContentText(
-                "Yi Feng,\n Matt Jones,\n Danqing Zhao");
+                " Danqing Zhao,\n Micheal Coyne\n Yi Feng,\n Matt Jones,\n Iris Lian\n Chris Marcello\n Matt Jones");
 
         // enable to resize the About window
         dialog.setResizable(true);
@@ -105,7 +104,7 @@ public class FileMenuController {
             for (Map.Entry<Tab, File> entry : this.tabFileMap.entrySet()) {
                 if (entry.getValue() != null) {
                     if (entry.getValue().equals(openFile)) {
-                        this.tabPane.getSelectionModel().select(entry.getKey());
+                        this.getTabPane().getSelectionModel().select(entry.getKey());
                         return;
                     }
                 }
@@ -188,7 +187,7 @@ public class FileMenuController {
      */
     public boolean handleSaveMenuItemAction() {
         // get the selected tab from the tab pane
-        Tab selectedTab = this.tabPane.getSelectionModel().getSelectedItem();
+        Tab selectedTab = this.getTabPane().getSelectionModel().getSelectedItem();
 
         // get the text area embedded in the selected tab window
         CodeArea activeCodeArea = this.getCurrentCodeArea();
@@ -213,7 +212,7 @@ public class FileMenuController {
     public void handleExitMenuItemAction() {
         ArrayList<Tab> tablist = new ArrayList<>(this.tabFileMap.keySet());
         for (Tab tab : tablist) {
-            this.tabPane.getSelectionModel().select(tab);
+            this.getTabPane().getSelectionModel().select(tab);
             if (!this.closeTab(tab)) {
                 return;
             }
@@ -229,7 +228,7 @@ public class FileMenuController {
      * @return boolean If the file is successfully saved, return true; else, return false.
      */
     private boolean setFileContents(String content, File file) {
-        if (!tabPane.getTabs().isEmpty()) {
+        if (!this.getTabPane().getTabs().isEmpty()) {
             try {
                 // open a file, save the content to it, and close it
                 FileWriter fileWriter = new FileWriter(file);
@@ -286,9 +285,9 @@ public class FileMenuController {
      * @param tab Tab to be closed
      */
     private void removeTab(Tab tab) {
-        this.tabPane.getSelectionModel().selectPrevious();
+        this.getTabPane().getSelectionModel().selectPrevious();
         this.tabFileMap.remove(tab);
-        this.tabPane.getTabs().remove(tab);
+        this.getTabPane().getTabs().remove(tab);
     }
 
     /**
@@ -311,6 +310,29 @@ public class FileMenuController {
                     this.tabFileMap.get(tab));
         }
     }
+    private boolean confirmSave(){
+        Alert alert = new Alert(
+                Alert.AlertType.CONFIRMATION,
+                "Want to save before close?",
+                ButtonType.YES,
+                ButtonType.NO,
+                ButtonType.CANCEL
+        );
+        alert.setTitle("Alert");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        // if user presses Yes button, save the file and close the tab
+        if (result.get() == ButtonType.YES) {
+            if (this.handleSaveMenuItemAction()) {
+                return true;
+            } else
+                return false;
+        }
+        // if user presses No button, close the tab without saving
+        else if (result.get() == ButtonType.NO) {
+            return true;
+        } else return result.get() != ButtonType.CANCEL;
+    }
 
     /**
      * Helper function to handle closing tab action.
@@ -326,29 +348,12 @@ public class FileMenuController {
         // if the file has not been saved or has been changed
         // pop up a dialog window asking whether to save the file
         if (this.tabHasUnsavedChanges(tab)) {
-            Alert alert = new Alert(
-                    Alert.AlertType.CONFIRMATION,
-                    "Want to save before close?",
-                    ButtonType.YES,
-                    ButtonType.NO,
-                    ButtonType.CANCEL
-            );
-            alert.setTitle("Alert");
-
-            Optional<ButtonType> result = alert.showAndWait();
-            // if user presses Yes button, save the file and close the tab
-            if (result.get() == ButtonType.YES) {
-                if (this.handleSaveMenuItemAction()) {
-                    this.removeTab(tab);
-                    return true;
-                } else
-                    return false;
-            }
-            // if user presses No button, close the tab without saving
-            else if (result.get() == ButtonType.NO) {
+            if(this.confirmSave()) {
                 this.removeTab(tab);
                 return true;
-            } else return result.get() != ButtonType.CANCEL;
+            }
+            else return false;
+
         }
         // if the file has not been changed, close the tab
         else {
@@ -358,32 +363,12 @@ public class FileMenuController {
     }
 
     /**
-     * Simple helper method which returns the currently viewed tab
-     *
-     * @return currently viewed tab
-     */
-    private Tab getCurrentTab() {
-        return this.tabPane.getSelectionModel().getSelectedItem();
-    }
-
-    /**
-     * Simple helper method which returns the code area  within the currently viewed tab
-     *
-     * @return current viewed code area
-     */
-    private CodeArea getCurrentCodeArea() {
-        Tab selectedTab = this.getCurrentTab();
-        VirtualizedScrollPane vsp = (VirtualizedScrollPane) selectedTab.getContent();
-        return (CodeArea) vsp.getContent();
-    }
-
-    /**
      * Simple helper method
      *
      * @return true if there aren't currently any tabs open, else false
      */
     private boolean noTabsOpen() {
-        return this.tabPane.getTabs().isEmpty();
+        return this.getTabPane().getTabs().isEmpty();
     }
 
     /**
@@ -407,8 +392,8 @@ public class FileMenuController {
 
         // add the new tab to the tab pane
         // set the newly opened tab to the the current (topmost) one
-        this.tabPane.getTabs().add(newTab);
-        this.tabPane.getSelectionModel().select(newTab);
+        this.getTabPane().getTabs().add(newTab);
+        this.getTabPane().getSelectionModel().select(newTab);
 
         return newTab;
     }
@@ -418,7 +403,7 @@ public class FileMenuController {
      * main controller for use by other methods in the class.
      */
     public void receiveFXMLElements(TabPane tabPane, Stage stage) {
-        this.tabPane = tabPane;
+        this.setTabPane(tabPane);
         this.primaryStage = stage;
     }
 
@@ -435,37 +420,16 @@ public class FileMenuController {
      * @return a File object of the current file
      */
     public File getCurrentFile() {
-        Tab currentTab = this.tabPane.getSelectionModel().getSelectedItem();
+        Tab currentTab = this.getTabPane().getSelectionModel().getSelectedItem();
 
 
         // if the current tab has unsaved changes
         // pop up Alert window to ask whether the user want to save before compile
         if (this.tabHasUnsavedChanges(currentTab)) {
-            Alert alert = new Alert(
-                    Alert.AlertType.CONFIRMATION,
-                    "Want to save before compile? If not," +
-                            " the old saved version without unsaved changes" +
-                            " will be compiled.",
-                    ButtonType.YES,
-                    ButtonType.NO,
-                    ButtonType.CANCEL
-            );
-            alert.setTitle("Alert");
-            Optional<ButtonType> result = alert.showAndWait();
-
-            // if the user chooses yes,
-            if (result.get() == ButtonType.YES) {
-                if (handleSaveMenuItemAction()) return this.tabFileMap.get(currentTab);
-                else return null;
-
-            // if the user chooses no
-            } else if (result.get() == ButtonType.NO) {
-                if (this.tabFileMap.get(currentTab) != null)
-                    return this.tabFileMap.get(currentTab);
-                else return null;
-
-            //if the user chooses cancel
-            } else return null;
+            if(this.confirmSave()){
+                return this.tabFileMap.get(currentTab);
+            }
+            else return null;
 
          // if the current tab doesn't have unsaved changes, return the file
          // of the current tab
