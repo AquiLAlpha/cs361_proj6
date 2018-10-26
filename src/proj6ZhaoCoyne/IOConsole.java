@@ -9,15 +9,15 @@ package proj6ZhaoCoyne;
 
 import javafx.scene.input.KeyEvent;
 import org.fxmisc.richtext.StyleClassedTextArea;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.IOException;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This IOConsole class extends the StyleCalssedTextArea.
  * It contains a String userInput to store the user's input,
- * and an outputStream for writing the user input to a process.
+ * and an stdin for writing the user input to a process.
  * It can read from an inputstream and write to an outputstream.
  *
  * @author Yi Feng
@@ -26,7 +26,9 @@ import java.io.IOException;
  */
 public class IOConsole extends StyleClassedTextArea {
     private String userInput;
-    private OutputStream outputStream;
+    private OutputStream stdin;
+    private InputStream stdout;
+    private List<StdoutWriterProcess> writerThreads = new ArrayList<StdoutWriterProcess>();
 
 
     /**
@@ -40,20 +42,27 @@ public class IOConsole extends StyleClassedTextArea {
 
     /**
      * set the console's output stream to the input OutpusStream
-     * @param outputStream
+     * @param stdin
      */
-    public void setOutputStream(OutputStream outputStream) {
-        this.outputStream = outputStream;
-    }
+    public void setStdin(OutputStream stdin) { this.stdin = stdin; }
+
+    public void setStdout(InputStream stdout) { this.stdout = stdout; }
 
     /**
      * Read from the inputStream of process and write to the styleClassedTextArea
      *
-     * @param input inputStream got from the process
+     * @param stdout inputStream got from the process
      */
-    public void readFrom(InputStream input) {
-        Thread readFrom = new Thread(new ReadFromProcess(input, this));
-        readFrom.start();
+    public void setupWriterThread(InputStream stdout) {
+        StdoutWriterProcess stdOutWriterThread = new StdoutWriterProcess(stdout, this);
+        stdOutWriterThread.start();
+        this.writerThreads.add(stdOutWriterThread);
+    }
+
+    public void teardownStdoutWriterThreads() {
+        for(StdoutWriterProcess p : writerThreads) {
+            p.stop();
+        }
     }
 
     /**
@@ -62,8 +71,10 @@ public class IOConsole extends StyleClassedTextArea {
      */
     public void writeTo() {
         try {
-            OutputStreamWriter writer = new OutputStreamWriter(this.outputStream);
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(this.stdin));
             writer.write(this.userInput);
+            writer.flush();
+            writer.close();
         } catch (IOException e1) {
             e1.printStackTrace();
         }

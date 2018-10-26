@@ -2,9 +2,15 @@ package proj6ZhaoCoyne;
 
 import javafx.application.Platform;
 
+import java.io.BufferedReader;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.stream.Collectors;
 
-public class ReadFromProcess implements Runnable {
+public class StdoutWriterProcess implements Runnable {
+    private AtomicBoolean running = new AtomicBoolean(false);
+    private Thread worker;
     private InputStream input;
     private IOConsole console;
 
@@ -13,7 +19,7 @@ public class ReadFromProcess implements Runnable {
      * @param input
      * @param console
      */
-    ReadFromProcess(InputStream input, IOConsole console) {
+    StdoutWriterProcess(InputStream input, IOConsole console) {
         this.input = input;
         this.console = console;
     }
@@ -24,10 +30,11 @@ public class ReadFromProcess implements Runnable {
      * using the javac.
      */
     public void run() {
+        running.set(true);
         try {
             byte[] buffer = new byte[1024];
             int length;
-            while ((length = input.read(buffer)) != -1) {
+            while (running.get() && (length = input.read(buffer)) != -1) {
                 String result = new String(buffer, 0, length);
                 Platform.runLater(() -> console.appendText(result + "\n"));
                 Thread.sleep(100);
@@ -35,5 +42,14 @@ public class ReadFromProcess implements Runnable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void start() {
+        worker = new Thread(this);
+        worker.start();
+    }
+
+    public void stop() {
+        running.set(false);
     }
 }
