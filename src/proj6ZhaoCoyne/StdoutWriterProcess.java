@@ -37,11 +37,7 @@ public class StdoutWriterProcess implements Runnable {
             while (running.get() && (length = input.read(buffer)) != -1) {
                 String result = new String(buffer, 0, length);
                 Platform.runLater(() -> console.appendText(result + "\n"));
-                //BufferedReader reader = new BufferedReader(new InputStreamReader(input));
-                //String textToWrite = reader.lines().collect(Collectors.joining("\n"));
-                //Platform.runLater(() -> console.appendText(textToWrite));
-                //Platform.runLater(() -> console.appendText("\n"));
-                Thread.sleep(1000);
+                Thread.sleep(100);
             }
         } catch (Exception e) {
             e.printStackTrace();

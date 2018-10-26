@@ -73,7 +73,7 @@ public class WorkingProcess implements Runnable {
 
         InputStream successsMessageStream = new ByteArrayInputStream(
             "Compilation Successful!".getBytes());
-        console.setupStdoutWriterThread(successsMessageStream);
+        console.setupWriterThread(successsMessageStream);
 
         if(ifRun){
             path = curFile.getAbsoluteFile().getParent();
@@ -112,12 +112,12 @@ public class WorkingProcess implements Runnable {
 
             // let the console read from the process's error stream
             InputStream processErrorStream = this.process.getErrorStream();
-            console.setupStdoutWriterThread(processErrorStream);
+            console.setupWriterThread(processErrorStream);
 
             // let the console read from the process's output stream
             InputStream stdout = this.process.getInputStream();
             console.setStdout(stdout);
-            console.setupStdoutWriterThread(stdout);
+            console.setupWriterThread(stdout);
 
             // set the process's input stream to the console's output stream
             OutputStream stdIn = this.process.getOutputStream();

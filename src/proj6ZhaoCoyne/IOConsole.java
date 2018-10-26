@@ -44,18 +44,16 @@ public class IOConsole extends StyleClassedTextArea {
      * set the console's output stream to the input OutpusStream
      * @param stdin
      */
-    public void setStdin(OutputStream stdin) {
-        this.stdin = stdin;
-    }
+    public void setStdin(OutputStream stdin) { this.stdin = stdin; }
 
-    public void setStdout(InputStream stdout) { this.stdout = stdout;}
+    public void setStdout(InputStream stdout) { this.stdout = stdout; }
 
     /**
      * Read from the inputStream of process and write to the styleClassedTextArea
      *
      * @param stdout inputStream got from the process
      */
-    public void setupStdoutWriterThread(InputStream stdout) {
+    public void setupWriterThread(InputStream stdout) {
         StdoutWriterProcess stdOutWriterThread = new StdoutWriterProcess(stdout, this);
         stdOutWriterThread.start();
         this.writerThreads.add(stdOutWriterThread);
