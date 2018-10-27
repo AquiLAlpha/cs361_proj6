@@ -159,7 +159,7 @@ public class FileMenuController extends MenuController{
         // file where the text content is to be saved
         File saveFileDialog = fileChooser.showSaveDialog(this.primaryStage);
         if (saveFileDialog != null) {
-            // get the selected tab from the tab pane
+            // get the selected tab from the tab layout
             Tab selectedTab = this.getCurrentTab();
 
             // get the text area embedded in the selected tab window
@@ -190,7 +190,7 @@ public class FileMenuController extends MenuController{
      * @return false if the user has clicked cancel
      */
     public boolean handleSaveMenuItemAction() {
-        // get the selected tab from the tab pane
+        // get the selected tab from the tab layout
         Tab selectedTab = this.getTabPane().getSelectionModel().getSelectedItem();
 
         // get the text area embedded in the selected tab window
@@ -394,7 +394,7 @@ public class FileMenuController extends MenuController{
         newTab.setText(tabText);
         newTab.setContent(content);
 
-        // add the new tab to the tab pane
+        // add the new tab to the tab layout
         // set the newly opened tab to the the current (topmost) one
         this.getTabPane().getTabs().add(newTab);
         this.getTabPane().getSelectionModel().select(newTab);

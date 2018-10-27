@@ -84,6 +84,13 @@ Date: 10/12/18
                                         shift="DOWN" shortcut="UP"/>
                 </accelerator>
             </MenuItem>
+            <MenuItem fx:id="findAndReplaceMenuItem" onAction="#handleFindAndReplace"
+                      text="Find and Replace">
+                <accelerator>
+                    <KeyCodeCombination alt="UP" code="F" control="UP" meta="DOWN"
+                                        shift="UP" shortcut="UP"/>
+                </accelerator>
+            </MenuItem>
             <MenuItem fx:id="cutMenuItem" onAction="#handleCutMenuItemAction" text="Cut">
                 <accelerator>
                     <KeyCodeCombination alt="UP" code="X" control="UP" meta="DOWN"
