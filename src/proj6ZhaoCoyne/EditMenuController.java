@@ -7,11 +7,16 @@ Date: 10/12/18
 
 package proj6ZhaoCoyne;
 
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.Tab;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TabPane;
-import org.fxmisc.flowless.VirtualizedScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import org.fxmisc.richtext.CodeArea;
+import org.fxmisc.richtext.NavigationActions;
+
+import java.util.Objects;
 
 /**
  * This class handles the Edit menu, as a helper to the main Controller.
@@ -74,6 +79,50 @@ public class EditMenuController extends MenuController{
     public void handleSelectAllMenuItemAction() {
         this.getCurrentCodeArea().selectAll();
     }
+
+    //public void handleFindAndReplace(Stage parent) {
+    public void handleFindAndReplace() {
+        Stage popupWindow = new Stage();
+        GridPane layout   = new GridPane();
+        Scene scene       = new Scene(layout);
+        FindAndReplaceWidget findAndReplace = new FindAndReplaceWidget();
+
+        CodeArea currentCodeArea = getCurrentCodeArea();
+        String textToSearch      = currentCodeArea.getText();
+
+        Button findButton       = new Button("Find next");
+        Button replaceButton    = new Button("Replace");
+        Button replaceAllButton = new Button("Replace all");
+        TextField  userEntryTextField = new TextField();
+
+        layout.add(findButton,         0, 1);
+        layout.add(replaceButton,      1, 1);
+        layout.add(replaceAllButton,   2, 1);
+        layout.add(userEntryTextField, 0, 0, 3, 1);
+        findButton.setOnAction(
+            event -> {
+                boolean targetHasChanged = !Objects.equals(userEntryTextField.getText(),
+                                                           findAndReplace.getTarget()
+                );
+                if(findAndReplace.isEmpty() || targetHasChanged) {
+                    findAndReplace.createIteratorFrom(textToSearch, userEntryTextField.getText());
+                    findAndReplace.setTarget(userEntryTextField.getText());
+                }
+                int[] location = findAndReplace.getNextTargetLocation();
+                if(location != null) {
+                    currentCodeArea.moveTo(location[0]);
+                    currentCodeArea.moveTo(location[1], NavigationActions.SelectionPolicy.EXTEND);
+                }
+
+            }
+
+        );
+
+        popupWindow.setScene(scene);
+        popupWindow.showAndWait();
+
+    }
+
 
 
     /**

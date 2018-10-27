@@ -166,6 +166,13 @@ public class Controller {
     }
 
     /**
+     * Handles the find and replace button action.
+     * Opens a find and replace popup window.
+     */
+    @FXML
+    private void handleFindAndReplace() { editMenuController.handleFindAndReplace(); }
+
+    /**
      * Handles the Cut button action.
      * Cuts the selected text.
      */

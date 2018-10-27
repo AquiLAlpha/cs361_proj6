@@ -1,48 +1,100 @@
 package proj6ZhaoCoyne;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Stream;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Popup;
+import javafx.stage.Stage;
+import org.fxmisc.richtext.CodeArea;
+
+import java.util.*;
 
 public class FindAndReplaceWidget {
 
+    private Iterator<int[]> indices = new ArrayList<int[]>().iterator();
+    private String target;
+
+    public FindAndReplaceWidget() {
+
+    }
+
+    public FindAndReplaceWidget(String source, String target) {
+
+        indices = findAllIndices(source, target).iterator();
+    }
+
+    public String getTarget() {
+        return this.target;
+    }
+
+    public void setTarget(String target) {
+        this.target = target;
+    }
+
+    public boolean isEmpty() {
+        return !indices.hasNext();
+    }
 
     /**
      * @param source
      * @param substring
      * @return the start and end indices of the target string in the source
      */
-    public int[] indicesOf(String source, String substring) {
+    private int[] indicesOf(String source, String substring) {
         int startOfSubstring = source.indexOf(substring);
-        if(startOfSubstring == -1) { return new int[] {-1, -1}; }
+        if(startOfSubstring == -1 || "".equals(substring)) { return new int[] {-1, -1}; }
         return new int[] {startOfSubstring, startOfSubstring + substring.length()};
     }
 
     private List<int[]> findAllIndicesHelper(
             List<int[]> idxAccumulator, int numPreviousChars,
             String source, String substring) {
-        int[] indicesOfSubstring = indicesOf(source, substring);
+
+        int[] indicesOfSubstring = this.indicesOf(source, substring);
         int start = indicesOfSubstring[0];
-        int end = indicesOfSubstring[1];
+        int end   = indicesOfSubstring[1];
 
         if (start == -1) {
             return idxAccumulator;
         }
         idxAccumulator.add(new int[] {start + numPreviousChars, end + numPreviousChars});
-        String unsearchedString = source.substring(end, source.length());
-        int numCharsSearched = numPreviousChars + end - start;
-        return findAllIndicesHelper(idxAccumulator, numCharsSearched, unsearchedString, substring);
+        String unsearchedText = source.substring(end, source.length());
+        int numCharsSearched  = numPreviousChars + end;
+        return findAllIndicesHelper(idxAccumulator, numCharsSearched, unsearchedText, substring);
     }
 
-    public List<int[]> findAllIndices(String source, String substring) {
+    private List<int[]> findAllIndices(String source, String substring) {
         List<int[]> result = new ArrayList<>();
         return findAllIndicesHelper(result, 0, source, substring);
     }
 
+    public void createIteratorFrom(String source, String target) {
+        this.indices = findAllIndices(source, target).iterator();
+    }
+
+    // returns [-1, -1] if there is no next value
+    public int[] getNextTargetLocation() {
+        if(!this.isEmpty()) {
+            return indices.next();
+        }
+        return null;
+    }
+
+
+    public Iterator<int[]> getIterator() {
+        return indices;
+    }
+
+    public void showWindow(Stage parent) {
+
+    }
 
 
     public static void main(String[] args) {
+        //String test = "half";
+        //String target = "hi";
+        //System.out.println(test.indexOf(target));
         FindAndReplaceWidget widget = new FindAndReplaceWidget();
         String testStr = "Hello, this is a test this";
         int[] result = widget.indicesOf(testStr, "this");
@@ -56,6 +108,7 @@ public class FindAndReplaceWidget {
         for(int[] arr : result2) {
             System.out.printf("%n[%s,%s]", arr[0], arr[1]);
         }
+
 
     }
 
