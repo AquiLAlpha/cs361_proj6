@@ -19,14 +19,15 @@ import org.fxmisc.richtext.CodeArea;
  * well as logic for determining deactivating the buttons when
  * appropriate.
  *
+ * @author Danqing Zhao
  * @author Yi Feng
  * @author Iris Lian
  * @author Chris Marcello
  * @author Evan Savillo
  * @author Matt Jones
  */
-public class EditMenuController extends MenuController{
 
+public class EditMenuController extends MenuController{
     /**
      * Handles the Undo button action.
      * Undo the actions in the text area.
@@ -75,13 +76,4 @@ public class EditMenuController extends MenuController{
         this.getCurrentCodeArea().selectAll();
     }
 
-
-    /**
-     * Simple helper method that gets the FXML objects from the
-     * main controller for use by other methods in the class.
-     */
-    public void receiveFXMLElements(TabPane tabPane) {
-        this.setTabPane(tabPane);
-
-    }
 }

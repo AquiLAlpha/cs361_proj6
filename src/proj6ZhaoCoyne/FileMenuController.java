@@ -8,8 +8,10 @@ Date: 10/12/18
 package proj6ZhaoCoyne;
 
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import javafx.scene.Node;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -46,7 +48,7 @@ public class FileMenuController extends MenuController{
      */
     private Map<Tab, File> tabFileMap = new HashMap<>();
     private int untitledCounter = 1;
-
+    private ContextMenu contextMenu = new ContextMenu();
     public Map<Tab, File> getMap() {
         return tabFileMap;
     }
@@ -84,6 +86,7 @@ public class FileMenuController extends MenuController{
         Tab newTab = createNewTab("untitled" + (untitledCounter++) + ".txt",
                 new VirtualizedScrollPane<>(new JavaCodeArea()));
         this.tabFileMap.put(newTab, null);
+        this.createContextMenu();
     }
 
     /**
@@ -119,6 +122,7 @@ public class FileMenuController extends MenuController{
                     new JavaCodeArea()));
             this.getCurrentCodeArea().replaceText(contentOpenedFile);
             this.tabFileMap.put(newTab, openFile);
+            this.createContextMenu();
         }
     }
 

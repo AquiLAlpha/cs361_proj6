@@ -41,6 +41,8 @@ public class Controller {
     @FXML
     private MenuItem saveAsMenuItem;
 
+    private ContextMenu contextMenu;
+
     @FXML
     private Menu editMenu;
 
@@ -61,6 +63,7 @@ public class Controller {
 
     private FileMenuController fileMenuController = new FileMenuController();
     private EditMenuController editMenuController = new EditMenuController();
+    private ContextMenuController contextMenuController = new ContextMenuController();
     private ToolbarController toolbarController = new ToolbarController();
 
     private IOConsole ioConsole = new IOConsole();
@@ -253,6 +256,7 @@ public class Controller {
     public void initialize() {
         fileMenuController.receiveFXMLElements(tabPane, primaryStage);
         editMenuController.receiveFXMLElements(tabPane);
+
 
         //Create an initial tab
         this.handleNewMenuItemAction();

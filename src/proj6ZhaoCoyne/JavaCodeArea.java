@@ -30,6 +30,7 @@ import java.util.regex.Pattern;
  * @author Yi Feng
  * @author Iris Lian
  * @author Matt Jones
+ * @author Danqing Zhao
  */
 public class JavaCodeArea extends CodeArea {
     /**
