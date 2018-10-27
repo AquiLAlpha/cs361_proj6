@@ -9,6 +9,7 @@ package proj6ZhaoCoyne;
 
 import javafx.beans.property.SimpleListProperty;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -60,12 +61,13 @@ public class Controller {
 
     @FXML
     private Stage primaryStage;
+    private Scene primaryScene;
 
     private FileMenuController fileMenuController = new FileMenuController();
     private EditMenuController editMenuController = new EditMenuController();
-    private ContextMenuController contextMenuController = new ContextMenuController();
     private ToolbarController toolbarController = new ToolbarController();
-
+    private HelpMenuController helpMenuController = new HelpMenuController();
+    private PreferenceController preferenceController = new PreferenceController();
     private IOConsole ioConsole = new IOConsole();
 
     /**
@@ -74,9 +76,19 @@ public class Controller {
      */
     @FXML
     private void handleAboutMenuItemAction() {
-        fileMenuController.handleAboutMenuItemAction();
+        helpMenuController.handleAboutMenuItemAction();
     }
 
+    /**
+     * Handles the Help Menu Items.
+     * Will open a URL with default browser.
+     * Supports Windows, Linux and Mac OS
+     */
+    @FXML
+    private void handleHelpMenuItemAction() { helpMenuController.handleHelpMenuItemAction(); }
+
+    @FXML
+    private void handleUrlMenuItemAction() { helpMenuController.handleUrlMenuItemAction(); }
     /**
      * Handles the New button action.
      * Opens a text area embedded in a new tab.
@@ -127,6 +139,8 @@ public class Controller {
         fileMenuController.handleSaveAsMenuItemAction();
     }
 
+    @FXML
+    private void handlePreferenceMenuItemAction() throws Exception{ fileMenuController.handlePreferenceMenuItemAction(this.primaryScene); }
     /**
      * Handles the save button action.
      * If a text area was not loaded from a file nor ever saved to a file,
@@ -253,6 +267,8 @@ public class Controller {
         this.primaryStage = primaryStage;
     }
 
+    void setPrimaryScene(Scene primaryScene) { this.primaryScene = primaryScene; }
+
     /**
      * This function is called after the FXML fields are populated.
      * Initializes the tab file map with the default tab.
@@ -261,7 +277,7 @@ public class Controller {
      * Add the console box at the bottom of the window.
      */
     public void initialize() {
-        fileMenuController.receiveFXMLElements(tabPane, primaryStage);
+        fileMenuController.receiveFXMLElements(tabPane, primaryStage, primaryScene);
         editMenuController.receiveFXMLElements(tabPane);
 
 

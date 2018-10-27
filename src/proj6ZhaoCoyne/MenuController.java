@@ -40,62 +40,7 @@ public class MenuController {
     public void receiveFXMLElements(TabPane tabPane) {
         this.setTabPane(tabPane);
     }
-    public void createContextMenu(){
-        CodeArea codeArea = this.getCurrentCodeArea();
-        ContextMenu contextMenu = this.getContextMenu();
-        MenuItem cut = new MenuItem("Cut");
-        MenuItem copy = new MenuItem("Copy");
-        MenuItem paste = new MenuItem("Paste");
-        MenuItem undo = new MenuItem("Undo");
-        MenuItem redo = new MenuItem("Redo");
-        MenuItem selectAll = new MenuItem("Select All");
-        contextMenu.getItems().addAll(cut, copy, paste, undo, redo, selectAll);
-        cut.setOnAction(new EventHandler<ActionEvent>(){
-            @Override
-            public void handle(ActionEvent event){
-                codeArea.cut();
-            }
-        });
-        copy.setOnAction(new EventHandler<ActionEvent>(){
-            @Override
-            public void handle(ActionEvent event){
-                codeArea.copy();
-            }
-        });
-        paste.setOnAction(new EventHandler<ActionEvent>(){
-            @Override
-            public void handle(ActionEvent event){
-                codeArea.paste();
-            }
-        });
-        undo.setOnAction(new EventHandler<ActionEvent>(){
-            @Override
-            public void handle(ActionEvent event){
-                codeArea.undo();
-            }
-        });
-        redo.setOnAction(new EventHandler<ActionEvent>(){
-            @Override
-            public void handle(ActionEvent event){
-                codeArea.redo();
-            }
-        });
-        selectAll.setOnAction(new EventHandler<ActionEvent>(){
-            @Override
-            public void handle(ActionEvent event){
-                codeArea.selectAll();
-            }
-        });
 
-        codeArea.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                if(event.isSecondaryButtonDown()){
-                    contextMenu.show(codeArea, event.getScreenX(),event.getScreenY());
-                }
-            }
-        });
-    }
     /**
      * Simple helper method which returns the code area  within the currently viewed tab
      *

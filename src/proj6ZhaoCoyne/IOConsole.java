@@ -60,6 +60,7 @@ public class IOConsole extends StyleClassedTextArea {
     }
 
 
+
     /**
      * write the user input the
      * if failed, print out the exception message in terminal

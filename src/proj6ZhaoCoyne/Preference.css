@@ -1,7 +1,8 @@
 .keyword {
-    -fx-fill: purple;
+    -fx-fill: green;
 -fx-font-weight: bold;
-}.semicolon {
+}
+.semicolon {
     -fx-font-weight: bold;
 }
 .paren {
@@ -19,15 +20,12 @@
 .string {
     -fx-fill: blue;
 }
-
 .comment {
-	-fx-fill: green;
+	-fx-fill: gray;
 }
-
 .intcon {
     -fx-fill: firebrick;
 }
-
 .paragraph-box:has-caret {
     -fx-background-color: #f2f9fc;
 }
