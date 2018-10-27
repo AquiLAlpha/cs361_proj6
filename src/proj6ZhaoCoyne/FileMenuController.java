@@ -8,14 +8,21 @@ Date: 10/12/18
 package proj6ZhaoCoyne;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.Node;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import org.fxmisc.flowless.VirtualizedScrollPane;
 import org.fxmisc.richtext.CodeArea;
-
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -40,40 +47,32 @@ import java.util.*;
  */
 public class FileMenuController extends MenuController{
     private Stage primaryStage;
+    private Scene primaryScene;
 
     /**
      * a HashMap mapping the tabs and associated files
      */
     private Map<Tab, File> tabFileMap = new HashMap<>();
     private int untitledCounter = 1;
-
+    private ContextMenu contextMenu = new ContextMenu();
     public Map<Tab, File> getMap() {
         return tabFileMap;
     }
 
-    /**
-     * Handles the About button action.
-     * Creates a dialog window that displays the authors' names.
-     */
-    public void handleAboutMenuItemAction() {
-        // create a information dialog window displaying the About text
-        Alert dialog = new Alert(Alert.AlertType.INFORMATION);
 
-        // enable to close the window by clicking on the x on the top left corner of
-        // the window
-        Window window = dialog.getDialogPane().getScene().getWindow();
-        window.setOnCloseRequest(event -> window.hide());
-
-        // set the title and the content of the About window
-        dialog.setTitle("About");
-        dialog.setHeaderText("Authors");
-        dialog.setContentText(
-                " Danqing Zhao,\n Micheal Coyne\n Yi Feng,\n Matt Jones,\n Iris Lian\n Chris Marcello\n Matt Jones");
-
-        // enable to resize the About window
-        dialog.setResizable(true);
-        dialog.showAndWait();
+    public void handlePreferenceMenuItemAction(Scene mainScene) throws Exception{
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/proj6ZhaoCoyne/Preference.fxml"));
+        Parent target = loader.load();
+        PreferenceController preferenceController = (PreferenceController) loader.getController();
+        preferenceController.receiveScene(mainScene);
+        Scene scene = new Scene(target);
+        Stage stage = new Stage();
+        stage.setTitle("Preference");
+        stage.setScene(scene);
+        stage.show();
     }
+
 
     /**
      * Handles the New button action.
@@ -84,8 +83,73 @@ public class FileMenuController extends MenuController{
         Tab newTab = createNewTab("untitled" + (untitledCounter++) + ".txt",
                 new VirtualizedScrollPane<>(new JavaCodeArea()));
         this.tabFileMap.put(newTab, null);
+        this.createContextMenu();
     }
 
+    /**
+     * Handle a pop-up window. When a new tab is created a related ContextMenu will also be created.
+     * When right button is clicked it will show up with some functional menus.
+     * If the primary button is clicked outside of the menu the menu will be hidden.
+     */
+    private void createContextMenu(){
+        CodeArea codeArea = this.getCurrentCodeArea();
+        ContextMenu contextMenu = new ContextMenu();
+        MenuItem cut = new MenuItem("Cut");
+        MenuItem copy = new MenuItem("Copy");
+        MenuItem paste = new MenuItem("Paste");
+        MenuItem undo = new MenuItem("Undo");
+        MenuItem redo = new MenuItem("Redo");
+        MenuItem selectAll = new MenuItem("Select All");
+        contextMenu.getItems().addAll(cut, copy, paste, undo, redo, selectAll);
+        cut.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent event){
+                codeArea.cut();
+            }
+        });
+        copy.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent event){
+                codeArea.copy();
+            }
+        });
+        paste.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent event){
+                codeArea.paste();
+            }
+        });
+        undo.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent event){
+                codeArea.undo();
+            }
+        });
+        redo.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent event){
+                codeArea.redo();
+            }
+        });
+        selectAll.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent event){
+                codeArea.selectAll();
+            }
+        });
+
+        codeArea.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if(event.isSecondaryButtonDown()){
+                    contextMenu.show(codeArea, event.getScreenX(),event.getScreenY());
+                }
+                else if(event.isPrimaryButtonDown()&&contextMenu.isShowing()){
+                    contextMenu.hide();
+                }
+            }
+        });
+    }
     /**
      * Handles the open button action.
      * Opens a dialog in which the user can select a file to open.
@@ -119,6 +183,7 @@ public class FileMenuController extends MenuController{
                     new JavaCodeArea()));
             this.getCurrentCodeArea().replaceText(contentOpenedFile);
             this.tabFileMap.put(newTab, openFile);
+            this.createContextMenu();
         }
     }
 
@@ -402,9 +467,10 @@ public class FileMenuController extends MenuController{
      * Simple helper method that gets the FXML objects from the
      * main controller for use by other methods in the class.
      */
-    public void receiveFXMLElements(TabPane tabPane, Stage stage) {
+    public void receiveFXMLElements(TabPane tabPane, Stage stage, Scene scene) {
         this.setTabPane(tabPane);
         this.primaryStage = stage;
+        this.primaryScene = scene;
     }
 
     /**

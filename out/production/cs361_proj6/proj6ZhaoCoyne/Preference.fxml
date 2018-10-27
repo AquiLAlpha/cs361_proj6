@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
+<!--
+File: Preference.fxml
+File: PreferenceController.java
+CS361 Project 6
+Author: Danqing Zhao
+Date: 10/26/18
+-->
+<VBox xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="proj6ZhaoCoyne.PreferenceController" >
+    <Label text="Keyword"></Label>
+    <ChoiceBox fx:id="keyword">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="purple"></String>
+                <String fx:value="green"></String>
+                <String fx:value="yellow"></String>
+                <String fx:value="blue"></String>
+            </FXCollections>
+        </items>
+    </ChoiceBox>
+    <Label text="Comment"></Label>
+    <ChoiceBox fx:id="comment">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="cadetblue"></String>
+                <String fx:value="gray"></String>
+                <String fx:value="green"></String>
+            </FXCollections>
+        </items>
+    </ChoiceBox>
+    <Button fx:id="confirmPreference" text="Confirm" onAction="#handleSavePreferenceAction"></Button>
+    <Button fx:id="cancelPreference" text="Cancel" onAction="#handleCloseAction"></Button>
+
+</VBox>

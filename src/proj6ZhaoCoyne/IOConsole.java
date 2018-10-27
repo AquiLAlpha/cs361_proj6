@@ -59,11 +59,7 @@ public class IOConsole extends StyleClassedTextArea {
         this.writerThreads.add(stdOutWriterThread);
     }
 
-    public void teardownStdoutWriterThreads() {
-        for(StdoutWriterProcess p : writerThreads) {
-            p.stop();
-        }
-    }
+
 
     /**
      * write the user input the

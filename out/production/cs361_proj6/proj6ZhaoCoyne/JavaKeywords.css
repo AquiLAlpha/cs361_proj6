@@ -1,15 +1,7 @@
-/*
-File: JavaKeywords.css
-CS361 Project 5
-Names: Yi Feng, Matt Jones, Danqing Zhao
-Date: 10/12/18
- */
-
 .keyword {
     -fx-fill: purple;
-    -fx-font-weight: bold;
-}
-.semicolon {
+-fx-font-weight: bold;
+}.semicolon {
     -fx-font-weight: bold;
 }
 .paren {
@@ -29,7 +21,7 @@ Date: 10/12/18
 }
 
 .comment {
-	-fx-fill: cadetblue;
+	-fx-fill: green;
 }
 
 .intcon {

@@ -3,7 +3,7 @@
 <!--
 File: Main.fxml
 File: EditMenu Controller.java
-CS361 Project 5
+CS361 Project 6
 Names: Yi Feng, Matt Jones, Danqing Zhao
 Date: 10/12/18
 -->
@@ -23,9 +23,7 @@ Date: 10/12/18
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="proj6ZhaoCoyne.Controller">
     <MenuBar VBox.vgrow="NEVER">
         <Menu text="File">
-            <MenuItem onAction="#handleAboutMenuItemAction"
-                      text="About..."/>
-            <SeparatorMenuItem/>
+            <MenuItem onAction="#handlePreferenceMenuItemAction" text = "Preference"></MenuItem>
             <MenuItem onAction="#handleNewMenuItemAction" text="New">
                 <accelerator>
                     <KeyCodeCombination alt="UP" code="N" control="UP" meta="DOWN"
@@ -118,6 +116,15 @@ Date: 10/12/18
                                         shift="DOWN" shortcut="UP"/>
                 </accelerator>
             </MenuItem>
+        </Menu>
+        <Menu text="Help" fx:id="helpMenu">
+            <MenuItem onAction="#handleAboutMenuItemAction"
+                      text="About..."/>
+            <SeparatorMenuItem/>
+            <MenuItem fx:id="javaHelpMenuItem" onAction="#handleHelpMenuItemAction"
+                      text="About Java"></MenuItem>
+            <MenuItem fx:id="urlHelpMenuItem" onAction="#handleUrlMenuItemAction"
+                      text="Reference: Open Url"></MenuItem>
         </Menu>
     </MenuBar>
     <ToolBar>

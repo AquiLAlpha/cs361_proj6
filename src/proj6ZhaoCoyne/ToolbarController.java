@@ -74,16 +74,9 @@ public class ToolbarController {
         if (this.workingProcess!=null) {
             this.process = this.workingProcess.getProcess();
             if (this.process != null) {
-                try {
-                    console.teardownStdoutWriterThreads();
-                    process.getInputStream().close();
-                    process.getOutputStream().close();
-                    process.getErrorStream().close();
-                    this.process.destroy();
 
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                this.process.destroyForcibly();
+
             }
         }
     }

@@ -51,10 +51,14 @@ public class Main extends Application {
                 getClass().getResource("/proj6ZhaoCoyne/Main.fxml"));
         Parent root = loader.load();
 
+        // initialize a scene and add features specified in the css file to the scene
+        Scene scene = new Scene(root, SCENE_WIDTH, SCENE_HEIGHT);
+        scene.getStylesheets().add("/proj6ZhaoCoyne/Main.css");
+        scene.getStylesheets().add("/proj6ZhaoCoyne/JavaKeywords.css");
         // set controller and stage
         Controller controller = loader.getController();
         controller.setPrimaryStage(stage);
-
+        controller.setPrimaryScene(scene);
         // eats the command to quit from the window itself
         // minor behavior issue currently but not a real bug
         // when quitting is prompts dialog twice on cancel after confirmed save
@@ -63,15 +67,13 @@ public class Main extends Application {
             controller.handleExitMenuItemAction();
         });
 
-        // initialize a scene and add features specified in the css file to the scene
-        Scene scene = new Scene(root, SCENE_WIDTH, SCENE_HEIGHT);
-        scene.getStylesheets().add("/proj6ZhaoCoyne/Main.css");
-        scene.getStylesheets().add("/proj6ZhaoCoyne/JavaKeywords.css");
+
 
         // configure the stage
         stage.setTitle(STAGE_TITLE);
 
         stage.sizeToScene();
+
         stage.setScene(scene);
         stage.show();
     }
