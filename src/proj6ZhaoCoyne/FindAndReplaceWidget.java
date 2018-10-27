@@ -40,6 +40,10 @@ public class FindAndReplaceWidget {
         this.textToSearch = text;
     }
 
+    /**
+     * @return a boolean that indicates whether or not the FindAndReplaceWidget's "indices" field, which
+     * is an iterator, is empty or not.
+     */
     public boolean isEmpty() {
         return !indices.hasNext();
     }
@@ -145,12 +149,14 @@ public class FindAndReplaceWidget {
     }
 
     /**
-     *
-     * @param idxAccumulator 
-     * @param numPreviousChars
-     * @param source
-     * @param substring
-     * @return
+     * A recursive helper method for the findAllIndices method. Returns a
+     * @param idxAccumulator a List where the int[]s are accumulated
+     * @param numPreviousChars the numbers of previous characters that have been examined
+     *                         in search of the target substring
+     * @param source the source that is being examined for the target substring
+     * @param substring the target substring which is being searched for
+     * @return a list of int arrays, where each int array represents the start and end location
+     * of a target substring in the original source String
      */
     private List<int[]> findAllIndicesHelper(
             List<int[]> idxAccumulator, int numPreviousChars,
@@ -171,15 +177,24 @@ public class FindAndReplaceWidget {
         return findAllIndicesHelper(idxAccumulator, numCharsSearched, unsearchedText, substring);
     }
 
+    /**
+     * this method is used for finding all of the locations of a given substring in a given
+     * source string
+     * @param source the source text which is being examined for the given substring
+     * @param substring the substring that is being searched for in the given source String
+     * @return a list of int arrays, where each int array represents the start and end location
+     *         of a target substring in the original source String
+     */
     private List<int[]> findAllIndices(String source, String substring) {
         List<int[]> result = new ArrayList<>();
         return findAllIndicesHelper(result, 0, source, substring);
     }
 
     /**
-     *
-     * @param source
-     * @param target
+     * helper method to create an iterator and store it in the indices field
+     * @param source the source text that is being searched
+     *               (usually all of the text contained in the current text area)
+     * @param target the target string to be searched for
      */
     private void createIteratorFrom(String source, String target) {
         this.indices = findAllIndices(source, target).iterator();

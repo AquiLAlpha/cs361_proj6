@@ -80,7 +80,10 @@ public class EditMenuController extends MenuController{
         this.getCurrentCodeArea().selectAll();
     }
 
-    //public void handleFindAndReplace(Stage parent) {
+
+    /**
+     * Handles the findAndReplace button action.
+     */
     public void handleFindAndReplace() {
         FindAndReplaceWidget findAndReplace = new FindAndReplaceWidget(this);
         findAndReplace.setupWidget();
