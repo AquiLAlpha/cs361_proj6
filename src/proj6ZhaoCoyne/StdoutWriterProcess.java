@@ -9,8 +9,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
 public class StdoutWriterProcess implements Runnable {
-    private AtomicBoolean running = new AtomicBoolean(false);
-    private Thread worker;
     private InputStream input;
     private IOConsole console;
     private Boolean ifStreamClosed;
@@ -36,7 +34,6 @@ public class StdoutWriterProcess implements Runnable {
      * using the javac.
      */
     public void run() {
-        running.set(true);
         try {
             byte[] buffer = new byte[1024];
             int length;
@@ -51,11 +48,7 @@ public class StdoutWriterProcess implements Runnable {
     }
 
     public void start() {
-        worker = new Thread(this);
+        Thread worker = new Thread(this);
         worker.start();
-    }
-
-    public void stop() {
-        running.set(false);
     }
 }
