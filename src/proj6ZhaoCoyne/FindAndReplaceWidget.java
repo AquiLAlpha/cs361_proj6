@@ -78,15 +78,15 @@ public class FindAndReplaceWidget {
      * Binds events to the widget's "find" and "replace all" buttons.
      */
     private void setupButtons() {
-        findButton.setOnAction(event -> selectNextTarget());
-        replaceAllButton.setOnAction(event -> replaceAllTargets());
+        findButton.setOnAction(event -> selectNext());
+        replaceAllButton.setOnAction(event -> replaceAll());
     }
 
     /**
      * Selects the next word in the CodeArea that matches the search that user
      * has entered in the TextField of the FindAndReplaceWidget.
      */
-    private void selectNextTarget() {
+    private void selectNext() {
         CodeArea currentCodeArea   = menuController.getCurrentCodeArea();
         String   currentText       = currentCodeArea.getText();
         String   currentTarget     = userEntryTextField.getText();
@@ -112,14 +112,14 @@ public class FindAndReplaceWidget {
      * The replacement string is obtained from a TextInputDialog which appears when this method
      * is called.
      */
-    private void replaceAllTargets() {
+    private void replaceAll() {
         String source = menuController.getCurrentCodeArea().getText();
         String target = userEntryTextField.getText();
 
         TextInputDialog dialog = new TextInputDialog();
         dialog.setContentText("Replace with: ");
         dialog.setTitle(      "Replace All");
-        dialog.setHeaderText( "Enter the text you would like to replaceAllTargets your selection");
+        dialog.setHeaderText( "Enter the text you would like to replace your selection");
 
         Optional<String> userSelection = dialog.showAndWait();
         if(!userSelection.isPresent()) {
