@@ -1,12 +1,6 @@
 package proj6ZhaoCoyne;
 
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
-import org.fxmisc.richtext.CodeArea;
 
 import java.util.*;
 

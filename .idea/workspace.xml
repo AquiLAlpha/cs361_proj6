@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ae95a592-3463-4461-9274-54a3d354f6fb" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cs361_proj6/proj6ZhaoCoyne/Main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cs361_proj6/proj6ZhaoCoyne/Main.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/proj6ZhaoCoyne/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/proj6ZhaoCoyne/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/proj6ZhaoCoyne/EditMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/proj6ZhaoCoyne/EditMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/proj6ZhaoCoyne/FileMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/proj6ZhaoCoyne/FileMenuController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/proj6ZhaoCoyne/FindAndReplaceWidget.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/proj6ZhaoCoyne/FindAndReplaceWidget.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/proj6ZhaoCoyne/Main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/proj6ZhaoCoyne/Main.fxml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -56,13 +51,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FindAndReplaceWidget.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="FindAndReplaceWidget.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/proj6ZhaoCoyne/FindAndReplaceWidget.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="31" column="29" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
+            <state relative-caret-position="30">
+              <caret line="2" column="26" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
               <folding>
-                <element signature="imports" expanded="true" />
                 <element signature="e#626#627#0" expanded="true" />
                 <element signature="e#660#661#0" expanded="true" />
                 <element signature="e#704#705#0" expanded="true" />
@@ -91,25 +85,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EditMenuController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="EditMenuController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/proj6ZhaoCoyne/EditMenuController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="265">
-              <caret line="97" column="39" selection-start-line="97" selection-start-column="39" selection-end-line="97" selection-end-column="39" />
+            <state relative-caret-position="166">
+              <caret line="90" column="61" lean-forward="true" selection-start-line="90" selection-start-column="61" selection-end-line="90" selection-end-column="61" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WorkingProcess.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/proj6ZhaoCoyne/WorkingProcess.java">
+      <file leaf-file-name="Main.fxml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/proj6ZhaoCoyne/Main.fxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="127" selection-start-line="127" selection-end-line="127" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="1290">
+              <caret line="86" column="52" lean-forward="true" selection-start-line="86" selection-start-column="52" selection-end-line="86" selection-end-column="52" />
             </state>
           </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
       <file leaf-file-name="UserErrorDialog.java" pinned="false" current-in-tab="false">
@@ -183,8 +175,8 @@
         <option value="$PROJECT_DIR$/src/proj6ZhaoCoyne/FileMenuController.java" />
         <option value="$PROJECT_DIR$/src/proj6ZhaoCoyne/Main.java" />
         <option value="$PROJECT_DIR$/src/proj6ZhaoCoyne/Controller.java" />
-        <option value="$PROJECT_DIR$/src/proj6ZhaoCoyne/FindAndReplaceWidget.java" />
         <option value="$PROJECT_DIR$/src/proj6ZhaoCoyne/EditMenuController.java" />
+        <option value="$PROJECT_DIR$/src/proj6ZhaoCoyne/FindAndReplaceWidget.java" />
       </list>
     </option>
   </component>
@@ -338,12 +330,12 @@
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2336" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.2336" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24921875" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24921875" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3296" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -386,7 +378,6 @@
         <state relative-caret-position="885">
           <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="e#626#627#0" expanded="true" />
             <element signature="e#660#661#0" expanded="true" />
             <element signature="e#704#705#0" expanded="true" />
@@ -679,14 +670,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/proj6ZhaoCoyne/Main.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="86" column="52" lean-forward="true" selection-start-line="86" selection-start-column="52" selection-end-line="86" selection-end-column="52" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/proj6ZhaoCoyne/WorkingProcess.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="352">
@@ -752,12 +735,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/proj6ZhaoCoyne/Main.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1290">
+          <caret line="86" column="52" lean-forward="true" selection-start-line="86" selection-start-column="52" selection-end-line="86" selection-end-column="52" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/proj6ZhaoCoyne/EditMenuController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="90" column="61" lean-forward="true" selection-start-line="90" selection-start-column="61" selection-end-line="90" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/proj6ZhaoCoyne/FindAndReplaceWidget.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="31" column="29" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
+        <state relative-caret-position="30">
+          <caret line="2" column="26" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="e#626#627#0" expanded="true" />
             <element signature="e#660#661#0" expanded="true" />
             <element signature="e#704#705#0" expanded="true" />
@@ -767,13 +764,6 @@
             <element signature="e#2059#2060#0" expanded="true" />
             <element signature="e#2089#2090#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/proj6ZhaoCoyne/EditMenuController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="97" column="39" selection-start-line="97" selection-start-column="39" selection-end-line="97" selection-end-column="39" />
         </state>
       </provider>
     </entry>

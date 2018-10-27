@@ -117,13 +117,10 @@ public class EditMenuController extends MenuController{
             }
 
         );
-
         popupWindow.setScene(scene);
         popupWindow.showAndWait();
 
     }
-
-
 
     /**
      * Simple helper method that gets the FXML objects from the
